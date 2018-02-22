@@ -1,11 +1,11 @@
-class Calender < Struct.new(:view, :date, :callback)
+class Calendar < Struct.new(:view, :date, :callback)
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
     START_DAY = :sunday
 
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: "calender table table-bordered table-striped" do
+      content_tag :table, class: "calendar table table-bordered table-striped" do
         header + week_rows
       end
     end
@@ -37,7 +37,7 @@ class Calender < Struct.new(:view, :date, :callback)
 
     def weeks
       first = date.beginning_of_month.beginning_of_week(START_DAY)
-      last = dat.end_of_month.end_of_week(START_DAY)
+      last = date.end_of_month.end_of_week(START_DAY)
       (first..last).to_a.in_groups_of(7)
     end
 end
